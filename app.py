@@ -160,6 +160,18 @@ research, including development, backtesting, performance evaluation, and refine
 of systematic trading strategies across multiple currency pairs.
 </p>
 
+<div style="background-color:#1a1f28; border:1px solid #30363d; padding:20px; border-radius:6px; margin-top:20px;">
+<h4 style="color:#c5a059;">Perks & Growth</h4>
+<ul style="line-height:1.8; color:#ffffff;">
+<li>30-Day Paid Validation Phase</li>
+<li>Monthly Stipend: ₹5000 (Validation Phase)</li>
+<li>Long-term Quant Career Path</li>
+<li>Capital scaling opportunities for consistent performers</li>
+<li>Performance-based stipend hikes & profit sharing</li>
+</ul>
+</div>
+
+
 <h4 style="color:#c5a059; margin-top:25px;">Key Responsibilities</h4>
 <ul style="line-height:1.8;">
 <li>Develop and research multiple Forex trading strategies across different currency pairs</li>
