@@ -1,98 +1,248 @@
 import streamlit as st
 import os
-from PIL import Image
 
-# --- PAGE CONFIG ---
-st.set_page_config(page_title="K-Quant Analytics | Quantitative Research Lab", layout="wide")
+# ================= PAGE CONFIG =================
+st.set_page_config(
+    page_title="K-Quant Analytics",
+    layout="wide"
+)
 
-# --- CUSTOM CSS FOR INSTITUTIONAL LOOK ---
+# ================= CUSTOM CSS =================
 st.markdown("""
-    <style>
-    .main { background-color: #0e1117; color: #e0e0e0; }
-    h1, h2, h3 { color: #00f2ff !important; font-family: 'Helvetica Neue', Arial, sans-serif; }
-    .stInfo { background-color: #161b22; border: 1px solid #30363d; color: #c9d1d9; }
-    .stTabs [data-baseweb="tab-list"] { gap: 24px; }
-    .stTabs [data-baseweb="tab"] { height: 50px; background-color: transparent; border-bottom: 2px solid #30363d; color: #8b949e; }
-    .stTabs [aria-selected="true"] { border-bottom: 2px solid #00f2ff !important; color: #00f2ff !important; }
-    </style>
-    """, unsafe_allow_html=True)
+<style>
+.main { 
+    background-color: #0b0e14; 
+    color: #d1d1d1; 
+    font-family: 'Georgia', serif; 
+}
 
-# --- AUTO-DETECT LOGO ---
-logo_path = None
-for file in os.listdir("."):
-    if file.lower().startswith("image") and file.lower().endswith((".png", ".jpg", ".jpeg", ".jfif")):
-        logo_path = file
-        break
+.founder-text { 
+    color: #c5a059; 
+    font-size: 1.1rem; 
+    letter-spacing: 2px; 
+    text-transform: uppercase; 
+    font-weight: 300; 
+    margin-top: -5px; 
+}
 
-# --- HEADER ---
-col1, col2 = st.columns([1, 4])
+h1 { 
+    color: #ffffff !important; 
+    font-weight: 700; 
+    letter-spacing: -1px; 
+    font-family: 'Helvetica Neue', sans-serif; 
+}
+
+h2, h3 { 
+    color: #c5a059 !important; 
+    border-left: 3px solid #c5a059; 
+    padding-left: 15px; 
+    font-family: 'Helvetica Neue', sans-serif; 
+    margin-top: 30px; 
+}
+
+.stMetric { 
+    background-color: #161b22; 
+    border: 1px solid #30363d; 
+    padding: 15px; 
+    border-radius: 4px; 
+}
+
+.job-box { 
+    background-color: #161b22; 
+    border: 1px solid #30363d; 
+    padding: 30px; 
+    border-radius: 6px; 
+    margin-top: 20px; 
+}
+</style>
+""", unsafe_allow_html=True)
+
+# ================= HEADER =================
+col1, col2 = st.columns([1, 5])
+
 with col1:
-    if logo_path:
-        st.image(logo_path, width=150)
+    if os.path.exists("image.jpeg"):
+        st.image("image.jpeg", width=110)
     else:
         st.subheader("K-QUANT")
 
 with col2:
-    st.title("K-Quant Analytics")
-    st.write("Founded by **Kaushlendra Yadav** | Proprietary Quantitative Research & Algorithmic Trading")
+    st.markdown("<h1>K-QUANT ANALYTICS</h1>", unsafe_allow_html=True)
+    st.markdown("<div class='founder-text'>Founded by Kaushlendra </div>", unsafe_allow_html=True)
+    st.write("Quantitative Research, Risk Engineering & Automated Trading")
 
 st.divider()
 
-# --- PROFESSIONAL ABOUT US SECTION ---
-st.header("About K-Quant Analytics")
-st.info("""
-K-Quant Analytics is a premier proprietary quantitative research firm dedicated to achieving superior risk-adjusted returns through mathematical rigor and computational intelligence. We specialize in bridging the gap between classical financial theory and cutting-edge Machine Learning to capture structural market inefficiencies.
+# ================= MARKET METRICS =================
+m1, m2, m3, m4 = st.columns(4)
+m1.metric("EUR/USD", "1.0845", "+0.19%")
+m2.metric("GBP/USD", "1.2630", "-0.12%")
+m3.metric("USD/JPY", "148.12", "+0.31%")
+m4.metric("XAU/USD", "$2,034.50", "+0.60%")
 
-**Core Pillars of Excellence:**
-* **Quantitative Alpha Generation:** Deploying advanced Deep Learning architectures to identify high-probability patterns in financial data.
-* **Systematic Execution Framework:** Low-latency infrastructure bridging analytical environments with institutional execution platforms.
-* **Risk Engineering:** Prioritizing capital preservation through rigorous portfolio optimization and volatility management.
+st.divider()
+# ================= PERFORMANCE DASHBOARD =================
+st.header("Performance Dashboard")
+
+if os.path.exists("dashboard.png"):
+    st.image("Dashboard.png", caption="Weekly performance showing Win Rate, Sharpe Ratio, and Risk Metrics", use_column_width=True)
+else:
+    st.info("Dashboard image will be available soon.")
+
+# ================= ABOUT =================
+st.header("About K-Quant Analytics")
+st.markdown("""
+K-Quant Analytics is a proprietary quantitative research firm focused on the systematic
+research, evaluation, and deployment of data-driven trading strategies within the global
+Forex market.
+
+We conduct in-depth research across multiple currency pairs by developing diverse
+strategies using technical indicators, statistical formulas, historical price data,
+and machine learning models such as Long Short-Term Memory (LSTM) networks.
+Each strategy undergoes rigorous backtesting to evaluate win rate, drawdown,
+Sharpe ratio, profit factor, and overall risk efficiency.
+
+Rather than frequently changing strategy logic, we emphasize deep analytical
+understanding. When performance falls below expectations, we identify structural
+weaknesses and refine parameters while preserving the core strategy framework.
+Strategies that demonstrate consistent, risk-adjusted performance are gradually
+transitioned into live execution and deployed across multiple funded accounts.
 """)
 
-# --- STRATEGY DEMO ---
-st.header("Strategy Execution Analysis")
+st.markdown("""
+**Performance Optimization & Monitoring**
+
+- **Quantitative Strategy Research** – Multi-strategy development using technical,
+statistical, and machine learning methodologies  
+- **Systematic Backtesting & Evaluation** – Robust performance analysis with
+institutional-grade metrics and reporting  
+- **Risk & Execution Discipline** – Strong focus on Forex market structure, sessions,
+kill zones, position sizing, and capital protection  
+""")
+
+st.divider()
+
+# ================= STRATEGY VIDEO =================
+st.header("Strategy Development & Execution")
 if os.path.exists("demo.mp4"):
     st.video("demo.mp4")
 else:
-    st.warning("Strategy validation video (demo.mp4) not found in directory.")
+    st.info("Strategy execution demonstration will be available soon.")
 
 st.divider()
 
-# --- STRATEGIC ROADMAP ---
-st.header("KQuant Insight: Strategic Roadmap")
-t1, t2, t3, t4 = st.tabs(["Phase 1: Validation", "Phase 2: Deployment", "Phase 3: Analytics", "Phase 4: Scaling"])
+# ================= CAREER SECTION =================
+st.header("Career Opportunities")
+st.markdown("### Join Our Quantitative Research Team")
 
-with t1: 
+career_content = """
+<div class="job-box">
+
+<div style="color:#c5a059; font-size:0.85rem; font-weight:bold; text-transform:uppercase;">
+Current Opening: Full-Time / Remote
+</div>
+
+<div style="color:#ffffff; font-size:1.8rem; font-weight:bold; margin-bottom:5px;">
+Quantitative Analyst – FX Research
+</div>
+
+<p style="color:#8b949e;">
+<b>Department:</b> Quantitative Research & Alpha Engineering
+</p>
+
+<hr style="border-color:#30363d; margin:20px 0;">
+
+<h4 style="color:#c5a059;">Role Overview</h4>
+<p style="line-height:1.6;">
+We are seeking a disciplined and research-oriented Quantitative Analyst to contribute
+to our Forex quantitative research operations. The role involves end-to-end strategy
+research, including development, backtesting, performance evaluation, and refinement
+of systematic trading strategies across multiple currency pairs.
+</p>
+
+<h4 style="color:#c5a059; margin-top:25px;">Key Responsibilities</h4>
+<ul style="line-height:1.8;">
+<li>Develop and research multiple Forex trading strategies across different currency pairs</li>
+<li>Apply technical indicators, statistical methods, and machine learning models (e.g., LSTM)</li>
+<li>Perform rigorous backtesting using historical market data</li>
+<li>Evaluate strategies using Win Rate, Drawdown, Sharpe Ratio, Profit Factor, and risk metrics</li>
+<li>Prepare dashboards and detailed monthly performance reports</li>
+<li>Identify structural weaknesses in underperforming strategies and improve robustness</li>
+<li>Develop a strong understanding of Forex sessions, kill zones, pips, lot sizing, volume, and risk management</li>
+<li>Support deployment of validated strategies into live and funded trading environments</li>
+</ul>
+
+<h4 style="color:#c5a059; margin-top:25px;">Required Qualifications</h4>
+<ul style="line-height:1.8;">
+<li>Strong foundation in Mathematics, Probability, and Statistical Analysis</li>
+<li>Solid understanding of Forex market structure and trading mechanics</li>
+<li>Ability to design, analyze, and interpret quantitative backtests in Python;
+ use of AI-assisted coding tools is permitted, with emphasis on conceptual understanding and result validation.</li>
+<li>Familiarity with Sharpe ratio, drawdowns, and performance analytics</li>
+<li>Research-driven mindset with patience and discipline</li>
+</ul>
+
+</div>
+"""
+
+st.markdown(career_content, unsafe_allow_html=True)
+
+st.link_button(
+    "Access Official Application Form",
+    "https://bit.ly/4rizFx1",
+    use_container_width=True
+)
+
+st.divider()
+
+# ================= STRATEGIC ROADMAP =================
+st.header("Institutional Scaling Roadmap")
+
+tab1, tab2, tab3, tab4 = st.tabs(
+    ["Validation", "Deployment", "Analytics", "Scaling"]
+)
+
+with tab1:
     st.markdown("""
-    **Strategy Validation**
-    * Identification of high-alpha market inefficiencies.
-    * Parameter optimization and statistical robustness testing.
-    * Performance Target: Win-Rate > 50% with optimized Sharpe Ratio.
+    **Phase 1: Research & Validation**
+
+    • Identify statistically significant market inefficiencies  
+    • Conduct multi-timeframe backtesting on historical data  
+    • Validate strategies using institutional performance metrics  
+    • Eliminate non-robust and curve-fitted models  
     """)
 
-with t2: 
+with tab2:
     st.markdown("""
-    **Algorithmic Deployment**
-    * Integration of validated strategies into automated execution systems.
-    * Transition to risk oversight and execution monitoring protocols.
+    **Phase 2: Systematic Deployment**
+
+    • Convert validated strategies into automated execution systems  
+    • Integrate position sizing and capital allocation rules  
+    • Ensure disciplined, rule-based trade execution  
+    • Stress-test strategies across volatility regimes  
     """)
 
-with t3: 
+with tab3:
     st.markdown("""
-    **Performance Analytics**
-    * Real-time monitoring of live equity curves and risk metrics.
-    * Key Indicators: Max Drawdown, Sortino Ratio, and Profit Factor.
+    **Phase 3: Performance Analytics & Risk Monitoring**
+
+    • Monitor live equity curves and trade behavior  
+    • Track drawdowns, exposure, volatility, and risk concentration  
+    • Detect performance decay and regime changes  
+    • Refine strategies based on analytical insights  
     """)
 
-with t4: 
+with tab4:
     st.markdown("""
-    **Institutional Scaling**
-    * Formal induction into the core Quantitative Research team.
-    * Strategic capital allocation and performance-based equity models.
+    **Phase 4: Institutional Scaling & Capital Growth**
+
+    • Scale capital across uncorrelated strategies  
+    • Expand research across FX, Metals, and other asset classes  
+    • Optimize portfolio-level risk-adjusted returns  
+    • Prepare infrastructure for prop and institutional capital  
     """)
 
 st.divider()
 
-# --- CONTACT / CALL TO ACTION ---
-st.link_button("Access Official Application Form", "https://bit.ly/4rizFx1")
+# ================= FOOTER =================
 st.write("**Contact:** kaushlendra30068@gmail.com | +91 78188 26377")
