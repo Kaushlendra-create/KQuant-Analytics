@@ -7,17 +7,23 @@ import plotly.graph_objects as go
 from supabase import create_client, Client
 import datetime as dt
 import resend
-# 1. PAGE CONFIG (Sabse Pehle)
+
+# 1. PAGE CONFIG
 st.set_page_config(
     page_title="K-Quant Analytics",
     layout="wide"
 )
-
-# 2. SUPABASE CONNECTION (Ye missing tha, isliye error aa raha tha)
-# Isko yahan dalne se neeche ke saare functions ise pehchan lenge
+# 2. SUPABASE & EMAIL CONFIG
 url = "https://hxgsrterljeziyyqsyht.supabase.co"
 key = "sb_publishable_Wyi6YHhFdiFIoKge9n4aoQ_dbmwjy-u"
 supabase: Client = create_client(url, key)
+resend.api_key = "re_3dDVUfh4_P8SDAsLpTiDRoHjQg826TyC8"
+
+# 3. SESSION STATE INITIALIZATION
+if 'logged_in' not in st.session_state:
+    st.session_state['logged_in'] = False
+if 'user_name' not in st.session_state:
+    st.session_state['user_name'] = ""
 
 # 3. EMAIL CONFIG
 resend.api_key = "re_3dDVUfh4_P8SDAsLpTiDRoHjQg826TyC8"
