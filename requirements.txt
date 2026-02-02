@@ -1,2 +1,8 @@
 streamlit
 Pillow
+streamlit
+supabase
+yfinance
+resend
+plotly
+streamlit-autorefresh
